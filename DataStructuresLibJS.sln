@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DataStructuresLibJs", "DataStructuresLibJs\DataStructuresLibJs.njsproj", "{18C50B9F-BB6A-4A23-9FF4-909A9BC9EDCD}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DataStructuresLibJs", "DataStructuresLibJs.njsproj", "{18C50B9F-BB6A-4A23-9FF4-909A9BC9EDCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
