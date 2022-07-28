@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules/
+
+# Visual Studio stuff
+obj/
+TestResults/
+bin/
+.vs/

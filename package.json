@@ -1,0 +1,24 @@
+{
+  "name": "data-structures-lib-js",
+  "version": "0.0.0",
+  "description": "DataStructuresLibJs",
+  "main": "app.js",
+  "jest": {
+    "rootDir": "Library.Test",
+    "testMatch": [
+      "**.Test.js"
+    ]
+  },
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "cls & jest"
+  },
+  "devDependencies": {
+    "@jest/types": "^28.1.3",
+    "jest": "^28.1.3",
+    "jest-editor-support": "^30.1.0"
+  }
+}
