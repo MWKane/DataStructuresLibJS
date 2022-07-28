@@ -2,7 +2,18 @@ class List extends Array {
     constructor(arr = []) {
         if (!Array.isArray(arr)) arr = [arr];
 
+        let nanEdgeCase = false;
+        if (arr.length === 1 && String(arr[0]) === 'NaN') {
+            arr.push(undefined);
+            nanEdgeCase = true;
+        }
+
         super(...arr);
+
+        if (nanEdgeCase) this.pop();
+
+        //console.log(arr);
+        //console.log(this);
     }
 
     linearSearch(t) {

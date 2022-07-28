@@ -1,10 +1,27 @@
+const { areArraysEqual, newArray } = require('../Helpers/Array.Helper.js');
 const { List } = require('../Library/List.js');
 
 describe('List() Test Suite', function () {
 
+    test('Test 0 - Sanity Check', function () {
+        expect(new List()).toBeDefined();
+        expect(areArraysEqual(new List([1, 2, 3]), [1, 2, 3])).toBeTruthy();
+    });
+
     test('Test 1 - Instantiation', function () {
+        // Validate instantiation
+        expect(new List([false])).toBeDefined();
+        expect(new List(['abc'])).toBeDefined();
+        expect(new List([{}])).toBeDefined();
+        expect(new List([BigInt(4)])).toBeDefined();
+        expect(new List([NaN])).toBeDefined();
+        expect(new List([Symbol()])).toBeDefined();
+        expect(new List([function () { }])).toBeDefined();
+        expect(new List(newArray(1e4))).toBeDefined();
+        
+        // Validate class instance
         let l = new List();
-        expect(l.constructor.name).toBe('List');
+        expect(l).toBeInstanceOf(List);
 
         // Validate Array() inheritance
         expect(Array.isArray(l)).toBeTruthy();

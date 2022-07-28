@@ -1,9 +1,15 @@
+const { areArraysEqual, newArray } = require('../Helpers/Array.Helper.js');
 const { UniqueList } = require('../Library/UniqueList.js');
 
 describe('UniqueList() Test Suite', function () {
 
+    test('Test 0 - Sanity Check', function () {
+        expect(new UniqueList()).toBeDefined();
+        expect(areArraysEqual(new UniqueList([1, 2, 3]), [1, 2, 3])).toBeTruthy();
+    });
+
     test('Test 1 - Instantiation', function () {
-        // Validate enforced type
+        // Validate instantiation
         expect(() => new UniqueList([false])).toThrow(TypeError);
         expect(() => new UniqueList(['abc'])).toThrow(TypeError);
         expect(() => new UniqueList([{}])).toThrow(TypeError);
@@ -11,20 +17,12 @@ describe('UniqueList() Test Suite', function () {
         expect(() => new UniqueList([NaN])).toThrow(TypeError);
         expect(() => new UniqueList([Symbol()])).toThrow(TypeError);
         expect(() => new UniqueList([function () { }])).toThrow(TypeError);
+        expect(new UniqueList(newArray(1e4))).toBeDefined();
 
         // Validate uniqueness
-        function areArraysEqual(a, b) {
-            if (!a || !b) return false;
-            if (a.length !== b.length) return false;
-
-            for (let i = 0; i < a.length; ++i) {
-                if (a[i] !== b[i]) return false;
-            }
-
-            return true;
-        }
         expect(areArraysEqual(new UniqueList([1, 2, 3, 3, 4, 4, 5]), [1, 2, 3, 4, 5])).toBeTruthy();
-        
+
+        // Validate class instance
         let l = new UniqueList();
         expect(l).toBeInstanceOf(UniqueList);
 

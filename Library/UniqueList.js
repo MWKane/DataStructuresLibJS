@@ -3,7 +3,6 @@ const { List } = require('./List.js');
 class UniqueList extends List {
     constructor(arr = []) {
         if (!Array.isArray(arr)) arr = [arr];
-
         if (!arr.every(e => typeof e === 'number' && !Number.isNaN(e))) throw new TypeError("UniqueList only handles numbers.");
 
         super(arr);
