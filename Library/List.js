@@ -11,9 +11,6 @@ class List extends Array {
         super(...arr);
 
         if (nanEdgeCase) this.pop();
-
-        //console.log(arr);
-        //console.log(this);
     }
 
     linearSearch(t) {
