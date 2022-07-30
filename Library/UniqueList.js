@@ -5,9 +5,9 @@ class UniqueList extends List {
         if (!Array.isArray(arr)) arr = [arr];
         if (!arr.every(e => typeof e === 'number' && !Number.isNaN(e))) throw new TypeError("UniqueList only handles numbers.");
 
-        super(arr);
+        arr = [...new Set(arr)];
 
-        this.removeDuplicates();
+        super(arr);
     }
 
     // Override

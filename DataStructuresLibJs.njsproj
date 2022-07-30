@@ -32,10 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Library.Bench\Array.Bench.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Library.Bench\List.Bench.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Helpers\Array.Helper.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Library.Bench\Set.Bench.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Library.Bench\UniqueList.Bench.js">

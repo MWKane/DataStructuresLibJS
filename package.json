@@ -13,9 +13,12 @@
     "name": ""
   },
   "scripts": {
+    "prestart": "cls",
     "start": "node app.js",
-    "test": "cls & jest",
-    "bench": "cls & nanobench Library.Bench/*.js"
+    "pretest": "cls",
+    "test": "jest",
+    "prebench": "cls",
+    "bench": "nanobench ./Library.Bench/List.Bench.js ./Library.Bench/UniqueList.Bench.js"
   },
   "devDependencies": {
     "@jest/types": "^28.1.3",
