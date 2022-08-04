@@ -1,4 +1,13 @@
+/**
+ * @typedef {object} List
+ */
+
 class List extends Array {
+    /**
+     * @param {any[]} [arr = []] Array to convert to a List.
+     * 
+     * @return {List}
+     */
     constructor(arr = []) {
         if (!Array.isArray(arr)) arr = [arr];
 
@@ -13,6 +22,13 @@ class List extends Array {
         if (nanEdgeCase) this.pop();
     }
 
+    /**
+     * Performs a linear search over the List, finding the first index of t.
+     * 
+     * @param {any} t Target to search for.
+     * 
+     * @return {number} Index of t. Returns -1 if t isn't found.
+     */
     linearSearch(t) {
         let n = this.length;
 
@@ -23,6 +39,14 @@ class List extends Array {
         return -1;
     }
 
+    /**
+     * Performs a linear search over the List utilising a sentinel, finding the first index of t.
+     * Slightly faster than linearSearch() over large Lists.
+     * 
+     * @param {any} t Target to search for.
+     * 
+     * @return {number} Index of t. Returns -1 if t isn't found.
+     */
     linearSearchSentinel(t) {
         // Because NaN === NaN always evaluates to false
         // We have to exit early or get stuck in the while loop

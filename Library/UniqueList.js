@@ -1,6 +1,15 @@
 const { List } = require('./List.js');
 
+/**
+ * @typedef {object} UniqueList
+ */
+
 class UniqueList extends List {
+    /**
+     * @param {any[]} [arr = []] Array to convert to a UniqueList. Duplicates are removed.
+     * 
+     * @return {UniqueList}
+     */
     constructor(arr = []) {
         if (!Array.isArray(arr)) arr = [arr];
         if (!arr.every(e => typeof e === 'number' && !Number.isNaN(e))) throw new TypeError("UniqueList only handles numbers.");
@@ -19,6 +28,10 @@ class UniqueList extends List {
     }
 
     // Public
+
+    /**
+     * Removes all duplicates within the UniqueList.
+     */
     removeDuplicates() {
         let map = {};
 
@@ -31,6 +44,13 @@ class UniqueList extends List {
         }
     }
 
+    /**
+     * Pushes v into the UniqueList as long as it is unique.
+     * 
+     * @param {any} v The value to push.
+     * 
+     * @return {boolean} Whether the item was successfully pushed.
+     */
     pushUnique(v) {
         if (typeof v !== 'number' || Number.isNaN(v)) throw new TypeError("UniqueList only handles numbers.");
 

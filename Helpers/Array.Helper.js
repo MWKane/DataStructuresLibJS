@@ -1,3 +1,11 @@
+/**
+ * Performs a shallow comparison of arrays, of which the order is significant.
+ * 
+ * @param {any[]} a
+ * @param {any[]} b
+ * 
+ * @return {boolean} Whether a and b are equal.
+ */
 function areArraysEqual(a, b) {
     if (!a || !b) return false;
     if (a.length !== b.length) return false;
@@ -9,6 +17,14 @@ function areArraysEqual(a, b) {
     return true;
 }
 
+/**
+ * Creates a new array of the given length. 
+ * Returned array is unsorted and contains duplicates.
+ * 
+ * @param {number} length
+ * 
+ * @return {number[]} Generated array.
+ */
 function newArray(length = 10) {
     let array = [];
 
@@ -19,6 +35,14 @@ function newArray(length = 10) {
     return array;
 }
 
+/**
+ * Creates a new array of the given length.
+ * Returned array is unsorted but does not contain duplicates.
+ * 
+ * @param {number} length
+ * 
+ * @return {number[]} Generated array.
+ */
 function newUniqueArray(length) {
     let array = [];
 
