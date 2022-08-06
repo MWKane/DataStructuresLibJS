@@ -1,0 +1,33 @@
+#!/bin/sh
+
+HASH=$(git rev-parse HEAD)
+CWD="$(git rev-parse --show-toplevel)"
+BIN_PATH="$CWD/node_modules/.bin"
+BENCH_PATH="$CWD/Library.Bench"
+
+cd $CWD
+
+bench() {
+  NANOBENCH="$BIN_PATH/nanobench"
+
+  # Check for NanoBench
+  if [[ ! -x "$NANOBENCH" ]]; then
+    printf "\t\033[41mPlease install NanoBench\033[0m\n"
+    exit 1
+  fi
+
+  printf "\nRunning all benchmarks\n"
+
+  for file in "$BENCH_PATH"/*.js
+  do
+	  name=$(basename "${file%.*}")
+	  printf "Benchmarking $name\n"
+	  node "$file" > "$BENCH_PATH/archive/${name}_${HASH}.log"
+  done
+
+  printf "\n\033[1;32mBenchmarking finished\033[0m\n"
+}
+
+bench
+
+exit $?

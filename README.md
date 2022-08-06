@@ -59,4 +59,4 @@ All INSERT, DELETE, GET, SEARCH, SORT and BALANCE algorithms must be benchmarked
 	- Data sizes of both 1e1 (10) and 1e4 (10,000) elements.
 	- 100,000 iterations minimum.
 
-You can find the current build's benchmark results in *./Library.Bench/results*
+You can find an archive of benchmark results in *./Library.Bench/archive*

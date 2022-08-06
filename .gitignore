@@ -6,3 +6,6 @@ obj/
 TestResults/
 bin/
 .vs/
+
+# Benchmarking results
+Library.Bench/archive/
