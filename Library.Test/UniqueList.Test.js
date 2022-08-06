@@ -1,3 +1,4 @@
+const { allTypes } = require('../Helpers/Test.Helper.js');
 const { areArraysEqual, newArray } = require('../Helpers/Array.Helper.js');
 const { UniqueList } = require('../Library/UniqueList.js');
 
@@ -9,24 +10,15 @@ describe('UniqueList() Test Suite', function () {
     });
 
     test('Test 1 - Instantiation', function () {
-        // Validate instantiation
-        expect(() => new UniqueList([false])).toThrow(TypeError);
-        expect(() => new UniqueList(['abc'])).toThrow(TypeError);
-        expect(() => new UniqueList([{}])).toThrow(TypeError);
-        expect(() => new UniqueList([BigInt(4)])).toThrow(TypeError);
-        expect(() => new UniqueList([NaN])).toThrow(TypeError);
-        expect(() => new UniqueList([Symbol()])).toThrow(TypeError);
-        expect(() => new UniqueList([function () { }])).toThrow(TypeError);
-        expect(new UniqueList(newArray(1e4))).toBeDefined();
+        // Validate class instance
+        expect(new UniqueList()).toBeDefined();
+        expect(new UniqueList(allTypes)).toBeDefined();
 
         // Validate uniqueness
         expect(areArraysEqual(new UniqueList([1, 2, 3, 3, 4, 4, 5]), [1, 2, 3, 4, 5])).toBeTruthy();
 
-        // Validate class instance
-        let l = new UniqueList();
-        expect(l).toBeInstanceOf(UniqueList);
-
         // Validate List() inheritance
+        let l = new UniqueList();
         expect(l.linearSearch).toBeInstanceOf(Function)
         expect(l.linearSearchSentinel).toBeInstanceOf(Function);
 
@@ -38,7 +30,7 @@ describe('UniqueList() Test Suite', function () {
     });
 
     test('Test 2 - push()', function () {
-        let l = new UniqueList([1, 2, 3]);
+        let l = new UniqueList([0, 2, 3]);
 
         expect(l.push).toBeInstanceOf(Function);
 
@@ -46,68 +38,33 @@ describe('UniqueList() Test Suite', function () {
         expect(l.push(4)).toBe(4);
         expect(l.push(3)).toBeNull();
 
-        expect(() => l.push(false)).toThrow(TypeError);
-        expect(() => l.push(null)).toThrow(TypeError);
-        expect(() => l.push()).toThrow(TypeError);
-        expect(() => l.push('abc')).toThrow(TypeError);
-        expect(() => l.push([])).toThrow(TypeError);
-        expect(() => l.push({})).toThrow(TypeError);
-        expect(() => l.push(BigInt(4))).toThrow(TypeError);
-        expect(() => l.push(NaN)).toThrow(TypeError);
-        expect(() => l.push(Symbol())).toThrow(TypeError);
-        expect(() => l.push(function () { })).toThrow(TypeError);
+        allTypes.forEach(type => expect(l.push(type)).toBeDefined());
     });
 
     // Feature unimplemented
-    test.skip('Test 3 - []', function () {
-        let l = new UniqueList([1, 2, 3]);
-
-        // Validate []
-        expect(l[3] = 4).toBe(4);
-        expect(l[4] = 3).toBeNull();
-
-        console.log(l);
-
-        expect(() => l[4] = false).toThrow(TypeError);
-        expect(() => l[4] = null).toThrow(TypeError);
-        expect(() => l[4] = undefined).toThrow(TypeError);
-        expect(() => l[4] = 'abc').toThrow(TypeError);
-        expect(() => l[4] = []).toThrow(TypeError);
-        expect(() => l[4] = {}).toThrow(TypeError);
-        expect(() => l[4] = BigInt(4)).toThrow(TypeError);
-        expect(() => l[4] = NaN).toThrow(TypeError);
-        expect(() => l[4] = Symbol()).toThrow(TypeError);
-        expect(() => l[4] = function () { }).toThrow(TypeError);
-    });
+    test.todo('Test 3 - []');
 
     test('Test 4 - pushUnique()', function () {
-        let l = new UniqueList([1, 2, 3]);
+        let l = new UniqueList([0, 2, 3]);
 
         expect(l.pushUnique).toBeInstanceOf(Function);
 
         expect(l.pushUnique(4)).toBeTruthy();
         expect(l.pushUnique(3)).toBeFalsy();
 
-        expect(() => l.pushUnique(false)).toThrow(TypeError);
-        expect(() => l.pushUnique(null)).toThrow(TypeError);
-        expect(() => l.pushUnique()).toThrow(TypeError);
-        expect(() => l.pushUnique('abc')).toThrow(TypeError);
-        expect(() => l.pushUnique([])).toThrow(TypeError);
-        expect(() => l.pushUnique({})).toThrow(TypeError);
-        expect(() => l.pushUnique(BigInt(4))).toThrow(TypeError);
-        expect(() => l.pushUnique(NaN)).toThrow(TypeError);
-        expect(() => l.pushUnique(Symbol())).toThrow(TypeError);
-        expect(() => l.pushUnique(function () { })).toThrow(TypeError);
+        allTypes.forEach(type => expect(l.push(type)).toBeTruthy());
     });
 
     test('Test 5 - removeDuplicates()', function () {
-        let l = new UniqueList([1, 2, 3]);
+        let l = new UniqueList(allTypes);
 
         expect(l.removeDuplicates).toBeInstanceOf(Function);
 
-        l.push(2, 2);
-        l.removeDuplicates();
-        expect(l.length).toBe(3);
+        allTypes.forEach(type => {
+            l.push(type);
+            l.removeDuplicates();
+            expect(l.length).toBe(allTypes.length);
+        });
     });
 
 });

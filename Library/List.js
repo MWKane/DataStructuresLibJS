@@ -2,13 +2,21 @@
  * @typedef {object} List
  */
 
+function defaultCompareFunc(a, b) {
+    return (
+        (a === b)
+        || (Number.isNaN(a) && Number.isNaN(b))
+    );
+}
+
 class List extends Array {
     /**
      * @param {any[]} [arr = []] Array to convert to a List.
+     * @param {function(any, any)} [compareFn = {a === b}]
      * 
      * @return {List}
      */
-    constructor(arr = []) {
+    constructor(arr = [], compareFn = defaultCompareFunc) {
         if (!Array.isArray(arr)) arr = [arr];
 
         let nanEdgeCase = false;
@@ -20,6 +28,8 @@ class List extends Array {
         super(...arr);
 
         if (nanEdgeCase) this.pop();
+
+        this.compare = compareFn;
     }
 
     /**
@@ -33,10 +43,29 @@ class List extends Array {
         let n = this.length;
 
         for (let i = 0; i < n; i++) {
-            if (this[i] === t) return i;
+            if (this.compare(this[i], t)) return i;
         }
 
         return -1;
+    }
+
+    /**
+     * Performs a linear search over the list, finding all indices of t.
+     * 
+     * @param {any} t
+     * 
+     * @return {number[]} Indices of t.
+     */
+    linearSearchAll(t) {
+        let n = this.length;
+        let indices = [];
+
+
+        for (let i = 0; i < n; i++) {
+            if (this.compare(this[i], t)) indices.push(i);
+        }
+
+        return indices;
     }
 
     /**
@@ -48,9 +77,8 @@ class List extends Array {
      * @return {number} Index of t. Returns -1 if t isn't found.
      */
     linearSearchSentinel(t) {
-        // Because NaN === NaN always evaluates to false
-        // We have to exit early or get stuck in the while loop
-        if (Number.isNaN(t)) return -1;
+        // Prevent infinite loops
+        if (!this.compare(t, t)) throw new Error('Infinite loop detected.');
 
         let n = this.length;
         let i = 0;
@@ -58,7 +86,7 @@ class List extends Array {
         // Add the sentinel
         super.push(t); // has an index of n
 
-        while (this[i] !== t) i++;
+        while (!this.compare(this[i], t)) i++;
 
         // Remove the sentinel
         super.pop();

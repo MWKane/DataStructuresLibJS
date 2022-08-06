@@ -7,6 +7,7 @@
  * @return {boolean} Whether a and b are equal.
  */
 function areArraysEqual(a, b) {
+    if (!Array.isArray(a) || !Array.isArray(b)) return false;
     if (!a || !b) return false;
     if (a.length !== b.length) return false;
 
