@@ -17,8 +17,12 @@
     "start": "node app.js",
     "pretest": "cls",
     "test": "jest",
-    "prebench": "cls",
-    "bench": "nanobench ./Library.Bench/List.Bench.js ./Library.Bench/UniqueList.Bench.js"
+
+    "prebench_fast": "cls",
+    "bench_fast": "nanobench ./Library.Bench/List.Bench.Fast.js ./Library.Bench/UniqueList.Bench.Fast.js",
+
+    "prebench_all": "cls",
+    "bench_all": "nanobench ./Library.Bench/List.Bench.Fast.js ./Library.Bench/List.Bench.Slow.js ./Library.Bench/UniqueList.Bench.Fast.js ./Library.Bench/UniqueList.Bench.Slow.js"
   },
   "devDependencies": {
     "jest": "^28.1.3",
