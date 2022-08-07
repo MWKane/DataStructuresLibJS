@@ -18,7 +18,7 @@ bench() {
 
   printf "\nRunning all benchmarks\n"
 
-  for file in "$BENCH_PATH"/*.js
+  for file in "$BENCH_PATH"/*.Fast.js
   do
 	  name=$(basename "${file%.*}")
 	  printf "Benchmarking $name\n"
