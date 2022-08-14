@@ -32,19 +32,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="git_hooks\post-commit" />
+    <Content Include="git_hooks\pre-commit" />
     <Content Include="Helpers\Bench.Helper.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Helpers\Test.Helper.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Library.Bench\List.Bench.js">
+    <Content Include="Library.Bench\List.Bench.Fast.js" />
+    <Content Include="Library.Bench\List.Bench.Slow.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Helpers\Array.Helper.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Library.Bench\UniqueList.Bench.js">
+    <Content Include="Library.Bench\UniqueList.Bench.Slow.js" />
+    <Content Include="Library.Bench\UniqueList.Bench.Fast.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Library.Test\List.Test.js">
@@ -63,6 +67,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="git_hooks\" />
     <Folder Include="Helpers\" />
     <Folder Include="Library\" />
     <Folder Include="Library.Test\" />
